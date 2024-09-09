@@ -1,0 +1,270 @@
+:root{
+    --couleur_principale: white;
+    --couleur_secondaire: blue;
+    --couleur_s3: rgb(111, 111, 255);
+}
+
+body{
+    background-color: var(--couleur_principale);
+}
+a{
+    text-decoration: none;
+}
+    header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 30px;
+        background-color: var(--couleur_principale);
+    }
+        .nav_list{
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
+            padding: 10px;
+            font-weight: bold;
+        }
+            .nav_button {
+                position: relative; /* ajout de position relative pour les pseudo-éléments */
+            }
+            .nav_button:hover{
+                cursor: pointer;     
+            }
+            
+            .nav_button::before {
+                content: '';
+                position: absolute;
+                top: 40px;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 3px;
+                background-color: var(--couleur_secondaire);
+                transition: width 0.5s; /* animation de la largeur de la bordure */
+            }
+            
+            .nav_button:hover::before {
+                width: 100%; /* la bordure s'étend sur toute la largeur du bouton */
+            }
+   
+        .profil{
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
+        }
+            .profil_button{
+                width: 150px;
+                height: 45px;
+                border-radius: 20px;
+                cursor: pointer;
+                border: solid 1px var(--couleur_principale);
+                background-color: var(--couleur_secondaire);
+                color: var(--couleur_principale);
+                font-weight: bold;
+            }
+            .profil_button:hover{
+                background-color: var(--couleur_s3);
+                transform: scale(1.3);
+                transition: 1s;
+            }
+        .menu{
+            display: none;
+        }
+            
+    main{
+        background-color: var(--couleur_secondaire);
+        height: 65vh;
+    }
+    footer{
+        background-color: var(--couleur_principale);
+        
+        height: 50%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 30px;
+    }
+        .contact_part{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+            .contact_titre{
+                font-weight: bold;
+                text-decoration: underline;
+            }
+            .logo_contact {
+                display: flex;
+                flex-direction: row;
+                gap: 30px;
+                position: relative; /* ajout de position relative pour les pseudo-éléments */
+            }
+            
+            .contour_logo_contact {
+                border: solid 1px blue;
+                width: 40px;
+                height: 40px;
+                border-radius: 100%;
+                padding-left: 15px;
+                padding-top: 10px;
+                transition: 1s;
+            }
+            
+            .contour_logo_contact:hover {
+                cursor: pointer;
+                border: 1px;
+                border-radius: 30px; /* modification de la forme en rectangle */
+                background-color: var(--couleur_secondaire); /* modification de la couleur de fond en bleu */
+                width: 180px; /* ajout de la largeur pour le conteneur rectangulaire */
+                height: 40px; /* ajout de la hauteur pour le conteneur rectangulaire */
+                padding-bottom: 10px;
+            }
+            
+            .contour_logo_contact:hover .logo {
+                display: none; /* disparition du logo */
+            }
+            
+            .contour_logo_contact:hover::before {
+                content: attr(data-title); /* affichage du titre du logo */
+                position: relative;
+                top: 50%;
+                left: 50%;
+                transform: translateY(-50%) translateX(-50%);
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: bold;
+                color: var(--couleur_principale); /* couleur du texte */
+                text-align: center;
+            }
+.menu-dropdown {
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  background-color: var(--couleur_principale);
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  visibility: hidden; /* remplace display: none */
+  max-height: 0; /* initialisation de la hauteur maximale à 0 */
+  overflow: hidden; /* pour éviter les débordements */
+  transition: max-height 2s, visibility 2s; /* animation de la hauteur maximale et de la visibilité */
+}
+
+.menu-dropdown.show {
+  max-height: 500px; /* hauteur maximale pour afficher le contenu */
+  visibility: visible; /* remplace display: block */
+  transition: max-height 2s, visibility 2s; /* animation de la hauteur maximale et de la visibilité */
+}              
+.menu-dropdown.hide {
+    max-height: 0; /* hauteur maximale à 0 pour cacher le contenu */
+    visibility: hidden; /* remplace display: none */
+    transition: max-height 2s; /* animation de la hauteur maximale */
+  }
+.menu-dropdown .nav_button {
+  display: block;
+  text-decoration: underline;
+  color: var(--couleur_secondaire);
+
+}
+
+ @media screen and (max-width: 760px){
+    header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+    }
+        .logo_ecole{
+            width: 40%;
+        }
+            .nav_button{
+                display: none;
+            }
+            .profil{
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+            }
+                .profil_button{
+                    width: 100px;
+                    border-radius: 10px;
+                }
+            .menu{
+                display: block;
+                cursor: pointer;
+            }    
+                
+    footer{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+    }
+        .contact_part{
+            display: flex;
+            flex-direction: column;
+        }
+            .logo_contact{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+}
+@media screen and (max-width: 420px){
+    header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+    }
+        .logo_ecole{
+            width: 40%;
+        }
+            .nav_button{
+                display: none;
+            }
+            .profil{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+                .profil_button{
+                    width: 100px;
+                    height: 30px;
+                    border-radius: 5px;
+                }
+            .menu{
+                display: block;
+                cursor: pointer;
+                margin: auto;
+                padding-left: 20px;
+            }    
+               
+    footer{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 30px;
+
+    }
+        .contact_part{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+            .logo_contact{
+                display: flex;
+               flex-direction: row;
+               gap: 10px;
+            }            
+}    
